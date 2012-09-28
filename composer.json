@@ -1,6 +1,6 @@
 {
     "name": "xdevel/amazon-ecs-php",
-    "minimum-stability": "dev",
+    "version":"1.3.4-forked",
     "require": {
         "php": ">=5.4.0"
     },
