@@ -1,6 +1,6 @@
 {
     "name": "xdevel/amazon-ecs-php",
-    "version":"1.3.4-forked",
+    "version":"0.5.1",
     "require": {
         "php": ">=5.4.0"
     },
