@@ -286,6 +286,7 @@ class AmazonECS
     /**
      * provides the signature
      *
+     * @param $request
      * @return string
      */
     final protected function buildSignature($request)
@@ -314,6 +315,7 @@ class AmazonECS
      *
      * @param object $object
      *
+     * @throws InvalidArgumentException
      * @return mixed
      */
     protected function returnData($object)
@@ -373,6 +375,7 @@ class AmazonECS
      * @param array $params the optional parameters
      * @param bool $merge merge or replace optional parameters
      *
+     * @throws InvalidArgumentException
      * @return array|AmazonECS depends on params argument
      */
     public function optionalParameters($params = null, $merge = false)
@@ -400,6 +403,7 @@ class AmazonECS
      *
      * @param string|null $country
      *
+     * @throws InvalidArgumentException
      * @return string|AmazonECS depends on country argument
      */
     public function country($country = null)
