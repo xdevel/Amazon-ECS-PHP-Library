@@ -69,6 +69,7 @@ class AmazonECS
      * @param string $secretKey
      * @param string $country
      * @param string $associateTag
+     * @throws Exception
      */
     public function __construct($accessKey, $secretKey, $country, $associateTag)
     {
@@ -87,6 +88,8 @@ class AmazonECS
      *
      * @param string $pattern
      *
+     * @param null $nodeId
+     * @throws Exception
      * @return array|object return type depends on setting
      *
      * @see returnType()
@@ -140,6 +143,7 @@ class AmazonECS
      * This allows to fetch information about nodes (children anchestors, etc.)
      *
      * @param integer $nodeId
+     * @return mixed
      */
     public function browseNodeLookup($nodeId)
     {
@@ -159,6 +163,7 @@ class AmazonECS
      * This allows to fetch information about product related to the parameter product
      *
      * @param string $asin
+     * @return mixed
      */
     public function similarityLookup($asin)
     {
@@ -299,6 +304,7 @@ class AmazonECS
      *
      * @param integer $nodeId
      *
+     * @throws InvalidArgumentException
      * @return boolean
      */
     final protected function validateNodeId($nodeId)
@@ -513,6 +519,7 @@ class AmazonECS
      *
      * @param integer $page
      *
+     * @throws InvalidArgumentException
      * @return AmazonECS
      */
     public function page($page)
