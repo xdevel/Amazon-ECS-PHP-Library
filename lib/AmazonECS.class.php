@@ -242,7 +242,14 @@ class AmazonECS
 
         $soapClient->__setSoapHeaders($this->buildSoapHeader($function));
 
-        return $soapClient->__soapCall($function, array($params));
+        // sometimes amazon returns http not found error instead of answer.
+        // this is dirty hack to fix it.
+        try {
+            return $soapClient->__soapCall($function, array($params));
+        } catch (SoapFault $e) {
+            sleep(1);
+            return $soapClient->__soapCall($function, array($params));
+        }
     }
 
     /**
