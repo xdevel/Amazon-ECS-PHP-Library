@@ -242,13 +242,20 @@ class AmazonECS
 
         $soapClient->__setSoapHeaders($this->buildSoapHeader($function));
 
+        // prevent 2 types of error: http & request throttled
+        // sometimes amazon throttled legal requests (wrong timers?)
         // sometimes amazon returns http not found error instead of answer.
         // this is dirty hack to fix it.
         try {
             return $soapClient->__soapCall($function, array($params));
         } catch (SoapFault $e) {
-            sleep(1);
-            return $soapClient->__soapCall($function, array($params));
+            if($e->getCode() == 0 || $e->getCode() == 'HTTP') {
+                sleep(10);
+                return $soapClient->__soapCall($function, array($params));
+            } else {
+                throw new SoapFault($e->getCode(), $e->getMessage());
+            }
+
         }
     }
 
